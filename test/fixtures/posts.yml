@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  address_number: MyString
+  description: MyText
+  project: MyString
+  area: 9.99
+  price: 9.99
+  unit: MyString
+  lng: 1.5
+  lat: 1.5
+
+two:
+  title: MyString
+  address_number: MyString
+  description: MyText
+  project: MyString
+  area: 9.99
+  price: 9.99
+  unit: MyString
+  lng: 1.5
+  lat: 1.5

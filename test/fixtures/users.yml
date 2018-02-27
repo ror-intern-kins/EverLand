@@ -4,8 +4,20 @@ one:
   username: MyString
   password: MyString
   name: MyString
+  email: MyString
+  phone: MyString
+  yob: 2018-02-27
+  gender: MyString
+  address: MyString
+  personal: false
 
 two:
   username: MyString
   password: MyString
   name: MyString
+  email: MyString
+  phone: MyString
+  yob: 2018-02-27
+  gender: MyString
+  address: MyString
+  personal: false
