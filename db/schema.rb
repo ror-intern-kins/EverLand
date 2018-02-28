@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20180228075059) do
 
   create_table "districts", force: :cascade do |t|
     t.string "name"
-    t.integer "cities_id"
+    t.integer "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cities_id"], name: "index_districts_on_cities_id"
+    t.index ["city_id"], name: "index_districts_on_city_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 20180228075059) do
 
   create_table "streets", force: :cascade do |t|
     t.string "name"
-    t.integer "wards_id"
+    t.integer "ward_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["wards_id"], name: "index_streets_on_wards_id"
+    t.index ["ward_id"], name: "index_streets_on_ward_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,10 +103,10 @@ ActiveRecord::Schema.define(version: 20180228075059) do
 
   create_table "wards", force: :cascade do |t|
     t.string "name"
-    t.integer "districts_id"
+    t.integer "district_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["districts_id"], name: "index_wards_on_districts_id"
+    t.index ["district_id"], name: "index_wards_on_district_id"
   end
 
 end
