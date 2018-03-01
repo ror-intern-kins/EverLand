@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, except: [:edit, :update, :destory]
+  # add a collection search - Q
+  resources :posts, except: [:destory] do
+    collection do
+      post 'search'
+    end
+  end
 
   resources :images, except: [:edit, :update, :show, :destory]
 
