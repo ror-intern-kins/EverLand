@@ -3,9 +3,8 @@ class Post < ApplicationRecord
     has_many :images
 
     #attributes can not be blank
-    validates :title, :description, 
-    :city_id, :district_id, :ward_id, 
-    :address_number, :contact_mobile, 
+    validates :title, :description, :category_id
+    :city_id, :district_id, :address_number, :contact_mobile, 
         presence: true
     #Title
     validates :title, 
