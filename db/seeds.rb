@@ -60,7 +60,8 @@ Category.create([
                 district_id: 0,
                 ward_id: 0,
                 street_id: 0,
-                description: "#{i} #{j}",
+                description: "#{i} #{j}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea distinctio tenetur in voluptates libero qui tempore officia. Assumenda explicabo aut cumque fuga.",
                 price: 100 + i + j,
                 unit: "triệu/tháng"
             }

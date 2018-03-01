@@ -15,8 +15,16 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    # @post = Post.new(post_params)
 
+    # if @post.save
+    #   render json: @post, status: :created, location: @post
+    # else
+    #   render json: @post.errors, status: :unprocessable_entity
+    # end
+    @user = User.find(params[:user_id])
+    @post = @user.posts.new(post_params)
+    
     if @post.save
       render json: @post, status: :created, location: @post
     else
@@ -47,12 +55,11 @@ class PostsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def post_params
       params.require(:post).permit(:title,:description, 
-      :category_id, :project, :area, 
-      :city_id, :district_id, :ward_id, 
-      :street, :address_number, 
-      :price, :unit, 
+      :category_id, :city_id, :district_id, :ward_id, 
+      :street, :address_number,:project, :unit, 
+      :area, :price,:front, :entrance,
       :lng, :lat, 
-      :front, :entrance, :house_direction, :balcony_direction, 
+      :house_direction, :balcony_direction, 
       :floor, :bedroom, :toilet, :furniture, 
       :contact_name, :contact_address, :contact_phone, :contact_mobile, :contact_mail)
     end
