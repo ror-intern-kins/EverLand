@@ -39,6 +39,19 @@ class PostsController < ApplicationController
     @post.destroy
   end
 
+  # SEARCH /posts/search - Q
+  def search
+    # query = params[:query]
+    query = params.require(:query).permit(:category_id,:area,:price,:city_id)   
+    @post = Post.where(query)
+        
+    if(!@post.empty?)
+      render json: @post
+    elsif
+      render status: 404
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
