@@ -47,9 +47,9 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title,:description, 
+      params.require(:post).permit(:title,:description, :user_id,
       :category_id, :city_id, :district_id, :ward_id, 
-      :street, :address_number,:project, :unit, 
+      :street_id, :address_number,:project, :unit, 
       :area, :price,:front, :entrance,
       :lng, :lat, 
       :house_direction, :balcony_direction, 
