@@ -36,6 +36,6 @@ class Post < ApplicationRecord
     #Email
     validates :contact_mail,
         length: {maximum: 100},
-        format: { with:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
+        format: { with:  /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i}
 
 end
