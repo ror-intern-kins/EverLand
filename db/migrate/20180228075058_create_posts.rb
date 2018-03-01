@@ -10,12 +10,12 @@ class CreatePosts < ActiveRecord::Migration[5.1]
       t.string :address_number
       t.text :description
       t.string :project
-      t.decimal :area
-      t.decimal :price
+      t.float :area
+      t.float :price
       t.string :unit
       t.float :lng
       t.float :lat
-      t.string :front
+      t.float :front
       t.float :entrance
       t.string :house_direction
       t.string :balcony_direction
