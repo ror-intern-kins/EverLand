@@ -42,10 +42,15 @@ class PostsController < ApplicationController
   # SEARCH /posts/search - Q
   def search
     # query = params[:query]
+    search_type = params[:search_type]
     case search_type
+    when "advance"
     query = params.require(:query).permit(:category_id,:area,:price,:city_id)   
     @post = Post.where(query)
-        
+    when "full"
+      text = params.require(:query).permit(:full_text)  
+      @post = Post.where("title LIKE ? OR address_number LIKE ? OR description LIKE ?", "%" + text[:full_text] + "%","%" + text[:full_text] + "%","%" + text[:full_text] + "%"   )   
+    end
     if(!@post.empty?)
       render json: @post
     elsif
