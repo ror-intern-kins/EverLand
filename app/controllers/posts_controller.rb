@@ -42,6 +42,7 @@ class PostsController < ApplicationController
   # SEARCH /posts/search - Q
   def search
     # query = params[:query]
+    case search_type
     query = params.require(:query).permit(:category_id,:area,:price,:city_id)   
     @post = Post.where(query)
         
