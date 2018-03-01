@@ -40,28 +40,15 @@ class PostsController < ApplicationController
 
   # SEARCH /posts/search - Q
   def search
-    query = params[:query] 
-    search_type = params[:search_type]
-    @post 
-    if (query)
-      case search_type
-      when "address_nil"
-        @post = Post.where("category_id LIKE ?", "%" + query[:category_id] + "%").where("area LIKE ?", "%" + query[:area] + "%").where("price LIKE ?", "%" + query[:price] + "%")
+    # query = params[:query]
+    query = params.require(:query).permit(:category_id,:area,:price,:city_id)   
+    @post = Post.where(query)
         
-      when "address"
-        @post_address= Post.where("city_id": query[:city_id]).where("district_id LIKE ?", "%" + query[:district_id] + "%").where("ward_id LIKE ?", "%" + query[:ward_id] + "%").where("street_id LIKE ?", "%" + query[:street_id] + "%")
-        if(@post_address)
-           @post = @post_address.where("category_id LIKE ?", "%" + query[:category_id] + "%").where("price LIKE ?", "%" + query[:price] + "%").where("area LIKE ?", "%" + query[:area] + "%").merge(Post.where.not(area:nil)) 
-        end 
-      else
-        render status: 404
-      end
-    end
     if(!@post.empty?)
       render json: @post
+    elsif
+      render status: 404
     end
-    render status: 404 
-
   end
 
   private
