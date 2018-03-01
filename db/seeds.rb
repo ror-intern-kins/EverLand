@@ -60,12 +60,7 @@ Category.create([
                 district_id: 0,
                 ward_id: 0,
                 street_id: 0,
-<<<<<<< HEAD
-                description: "#{i} #{j}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea distinctio tenetur in voluptates libero qui tempore officia. Assumenda explicabo aut cumque fuga.",
-=======
                 description: "#{i} #{j} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt placeat ipsam veritatis ea libero, minima itaque fugit, unde cumque accusantium doloribus vel consequatur dicta recusandae, nobis iste? Ex, excepturi assumenda.",
->>>>>>> feature/thang
                 price: 100 + i + j,
                 unit: "triệu/tháng"
             }
