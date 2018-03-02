@@ -2,19 +2,15 @@
 
 one:
   title: MyString
-  city_id: 1
-  district: 1
-  ward: 1
-  street: 1
   address_number: MyString
   description: MyText
   project: MyString
-  area: 9.99
-  price: 9.99
+  area: 1.5
+  price: 1.5
   unit: MyString
   lng: 1.5
   lat: 1.5
-  front: MyString
+  front: 1.5
   entrance: 1.5
   house_direction: MyString
   balcony_direction: MyString
@@ -30,19 +26,15 @@ one:
 
 two:
   title: MyString
-  city_id: 1
-  district: 1
-  ward: 1
-  street: 1
   address_number: MyString
   description: MyText
   project: MyString
-  area: 9.99
-  price: 9.99
+  area: 1.5
+  price: 1.5
   unit: MyString
   lng: 1.5
   lat: 1.5
-  front: MyString
+  front: 1.5
   entrance: 1.5
   house_direction: MyString
   balcony_direction: MyString
