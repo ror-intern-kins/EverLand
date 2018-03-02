@@ -1,41 +1,64 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   # GET /images
+  # GET /images.json
   def index
     @images = Image.all
-
-    render json: @images
   end
 
   # GET /images/1
+  # GET /images/1.json
   def show
-    render json: @image
+  end
+
+  # GET /images/new
+  def new
+    @image = Image.new
+  end
+
+  # GET /images/1/edit
+  def edit
   end
 
   # POST /images
+  # POST /images.json
   def create
     @image = Image.new(image_params)
 
-    if @image.save
-      render json: @image, status: :created, location: @image
-    else
-      render json: @image.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @image.save
+        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.json { render :show, status: :created, location: @image }
+      else
+        format.html { render :new }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /images/1
+  # PATCH/PUT /images/1.json
   def update
-    if @image.update(image_params)
-      render json: @image
-    else
-      render json: @image.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @image.update(image_params)
+        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.json { render :show, status: :ok, location: @image }
+      else
+        format.html { render :edit }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # DELETE /images/1
+  # DELETE /images/1.json
   def destroy
     @image.destroy
+    respond_to do |format|
+      format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -44,7 +67,7 @@ class ImagesController < ApplicationController
       @image = Image.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit(:url)
     end

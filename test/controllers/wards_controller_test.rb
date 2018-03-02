@@ -6,33 +6,43 @@ class WardsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get wards_url, as: :json
+    get wards_url
+    assert_response :success
+  end
+
+  test "should get new" do
+    get new_ward_url
     assert_response :success
   end
 
   test "should create ward" do
     assert_difference('Ward.count') do
-      post wards_url, params: { ward: { name: @ward.name } }, as: :json
+      post wards_url, params: { ward: { name: @ward.name } }
     end
 
-    assert_response 201
+    assert_redirected_to ward_url(Ward.last)
   end
 
   test "should show ward" do
-    get ward_url(@ward), as: :json
+    get ward_url(@ward)
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get edit_ward_url(@ward)
     assert_response :success
   end
 
   test "should update ward" do
-    patch ward_url(@ward), params: { ward: { name: @ward.name } }, as: :json
-    assert_response 200
+    patch ward_url(@ward), params: { ward: { name: @ward.name } }
+    assert_redirected_to ward_url(@ward)
   end
 
   test "should destroy ward" do
     assert_difference('Ward.count', -1) do
-      delete ward_url(@ward), as: :json
+      delete ward_url(@ward)
     end
 
-    assert_response 204
+    assert_redirected_to wards_url
   end
 end

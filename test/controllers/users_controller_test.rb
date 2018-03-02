@@ -6,33 +6,43 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get users_url, as: :json
+    get users_url
+    assert_response :success
+  end
+
+  test "should get new" do
+    get new_user_url
     assert_response :success
   end
 
   test "should create user" do
     assert_difference('User.count') do
-      post users_url, params: { user: { address: @user.address, birthday: @user.birthday, email: @user.email, gender: @user.gender, name: @user.name, password: @user.password, personal: @user.personal, phone: @user.phone, username: @user.username } }, as: :json
+      post users_url, params: { user: { address: @user.address, birthday: @user.birthday, email: @user.email, gender: @user.gender, name: @user.name, password: @user.password, personal: @user.personal, phone: @user.phone, username: @user.username } }
     end
 
-    assert_response 201
+    assert_redirected_to user_url(User.last)
   end
 
   test "should show user" do
-    get user_url(@user), as: :json
+    get user_url(@user)
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get edit_user_url(@user)
     assert_response :success
   end
 
   test "should update user" do
-    patch user_url(@user), params: { user: { address: @user.address, birthday: @user.birthday, email: @user.email, gender: @user.gender, name: @user.name, password: @user.password, personal: @user.personal, phone: @user.phone, username: @user.username } }, as: :json
-    assert_response 200
+    patch user_url(@user), params: { user: { address: @user.address, birthday: @user.birthday, email: @user.email, gender: @user.gender, name: @user.name, password: @user.password, personal: @user.personal, phone: @user.phone, username: @user.username } }
+    assert_redirected_to user_url(@user)
   end
 
   test "should destroy user" do
     assert_difference('User.count', -1) do
-      delete user_url(@user), as: :json
+      delete user_url(@user)
     end
 
-    assert_response 204
+    assert_redirected_to users_url
   end
 end
