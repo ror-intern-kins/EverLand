@@ -1,9 +1,0 @@
-  rails g scaffold User name:string username:string password:string birthday:date gender:string email:string phone:string address:string personal:boolean
-  rails g scaffold Category name:string
-  rails g scaffold City name:string
-  rails g scaffold District name:string
-  rails g scaffold Ward name:string
-  rails g scaffold Street name:string
-  rails g scaffold Post title:string city_id:integer district:integer ward:integer street:integer address_number:string description:text project:string area:decimal price:decimal unit:string lng:float lat:float front:string entrance:float house_direction:string balcony_direction:string floor:integer bedroom:integer toilet:integer furniture:text contact_name:string contact_address:string contact_phone:string contact_mobile:string contact_mail:string
-  rails g scaffold Image url:string
-  
