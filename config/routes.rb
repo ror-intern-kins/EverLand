@@ -6,10 +6,20 @@ Rails.application.routes.draw do
       resources :images,only: [:create, :edit, :update, :show, :destory]
     end
   end
+
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  resources :posts, except: [:create, :edit, :update, :destory]
+
+
+
+  # add a collection search - Q
+  resources :posts, except: [:create, :edit, :update,:destory] do
+    collection do
+      post 'search'
+    end
+  end
+  
 
   resources :images, except: [:create, :edit, :update, :show, :destory]
 
