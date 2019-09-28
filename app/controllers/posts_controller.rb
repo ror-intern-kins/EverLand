@@ -15,8 +15,9 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
-
+    @user = User.find(params[:user_id])
+    @post = @user.posts.new(post_params)
+    
     if @post.save
       render json: @post, status: :created, location: @post
     else
@@ -38,6 +39,25 @@ class PostsController < ApplicationController
     @post.destroy
   end
 
+  # SEARCH /posts/search - Q
+  def search
+    # query = params[:query]
+    search_type = params[:search_type]
+    case search_type
+    when "advance"
+    query = params.require(:query).permit(:category_id,:area,:price,:city_id)   
+    @post = Post.where(query)
+    when "full"
+      text = params.require(:query).permit(:full_text)  
+      @post = Post.where("title LIKE ? OR address_number LIKE ? OR description LIKE ?", "%" + text[:full_text] + "%","%" + text[:full_text] + "%","%" + text[:full_text] + "%"   )   
+    end
+    if(!@post.empty?)
+      render json: @post
+    elsif
+      render status: 404
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -46,6 +66,13 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :city_id, :district, :ward, :street, :address_number, :description, :project, :area, :price, :unit, :lng, :lat, :front, :entrance, :house_direction, :balcony_direction, :floor, :bedroom, :toilet, :furniture, :contact_name, :contact_address, :contact_phone, :contact_mobile, :contact_mail)
+      params.require(:post).permit(:title,:description, :user_id,
+      :category_id, :city_id, :district_id, :ward_id, 
+      :street_id, :address_number,:project, :unit, 
+      :area, :price,:front, :entrance,
+      :lng, :lat, 
+      :house_direction, :balcony_direction, 
+      :floor, :bedroom, :toilet, :furniture, 
+      :contact_name, :contact_address, :contact_phone, :contact_mobile, :contact_mail)
     end
 end
